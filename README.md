@@ -27,6 +27,8 @@ TO '/etc/pgbouncer/userlist.txt';
 ## Authenticate pgbouncer via the auth_query method  
 Follow the steps below to create a user to access password on behalf of other users from the postgres database via `auth_query` method who connect to pgpbouncer.
 
+You need to execute the following query as postgres user.
+
 ```
 CREATE ROLE pgbouncer LOGIN;
 -- set a password for the user
