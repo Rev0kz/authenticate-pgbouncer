@@ -4,7 +4,7 @@ Shows how to authenticate pgbouncer via the `userlist.txt` file or `auth_query` 
 ## Pre-requisite
 Make sure the postgres user have complete access to files `/etc/pgbouncer/pgbouncer.ini`, `/var/run/pgbouncer`, `/var/log/pgbouncer`
 
-## Authenticate via userlist.txt 
+## Authenticate via userlist.txt file
 Follow the steps below to authenticate users or clients connection to postgres database through pgbouncer.   
 
 - On the terminal execute the following commands:  
