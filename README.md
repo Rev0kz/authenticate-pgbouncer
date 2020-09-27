@@ -1,5 +1,5 @@
 # authenticate-pgbouncer
-Shows how to authenticate pgbouncer via the userlist.txt file or auth_query method.
+Shows how to authenticate pgbouncer via the `userlist.txt` file or `auth_query` method.
 
 ## Pre-requisite
 Make sure the postgres user have complete access to files `/etc/pgbouncer/pgbouncer.ini`, `/var/run/pgbouncer`, `/var/log/pgbouncer`
@@ -12,7 +12,7 @@ Follow the steps below to authenticate users or clients connection to postgres d
 This command switches to the postgres user.
 `sudo -u postgres psql`   
 
-Execute the query below as a postgres user.
+- Execute the query below as a postgres user.
 
 ```
 COPY (
