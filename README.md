@@ -10,7 +10,7 @@ Follow the steps below to authenticate users or clients connection to postgres d
 - On the terminal execute the following commands:  
 
 This command switches to the postgres user.
-`sudo -u postgres psql`   
+``sudo -u postgres psql`   
 
 - Execute the query below as a postgres user.
 
