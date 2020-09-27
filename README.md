@@ -24,3 +24,35 @@ FROM pg_authid
 TO '/etc/pgbouncer/userlist.txt';
 ```
 
+## Authenticate pgbouncer via the auth_query method  
+Follow the steps below to create a user to access password on behalf of other users from the postgres database via `auth_query` method who connect to pgpbouncer.
+
+```
+CREATE ROLE pgbouncer LOGIN;
+-- set a password for the user
+\password pgbouncer
+ 
+CREATE FUNCTION public.lookup (
+   INOUT p_user     name,
+   OUT   p_password text
+) RETURNS record
+   LANGUAGE sql SECURITY DEFINER SET search_path = pg_catalog AS
+$$SELECT usename, passwd FROM pg_shadow WHERE usename = p_user$$;
+ 
+-- make sure only "pgbouncer" can use the function
+REVOKE EXECUTE ON FUNCTION public.lookup(name) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.lookup(name) TO pgbouncer;
+```
+
+Inside the `/etc/pgbouncer/pgbouncer.ini` file under the `pgbouncer` section, edit it as specified below: 
+
+```
+[pgbouncer]
+auth_type = md5
+auth_file = /etc/pgbouncer/userlist.txt
+auth_user = pgbouncer
+auth_query = SELECT p_user, p_password FROM public.lookup($1)
+```
+
+
+
